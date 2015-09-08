@@ -1,0 +1,20 @@
+/*
+ JS Unicode转Ascii
+*/
+
+(function() {
+	function JsUnicode2Ascii(str) {
+		return unescape(str.replace(/\\u/g, '%u'));
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = JsUnicode2Ascii(text);
+	}
+	else {
+		doc.Text = JsUnicode2Ascii(doc.Text);
+	}
+}());

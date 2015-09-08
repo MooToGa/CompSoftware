@@ -1,0 +1,24 @@
+/*
+ Ascii转CSS Unicode
+*/
+
+(function() {
+	function Ascii2CssUnicode(str) {
+		return str.replace(/[^\u0000-\u00FF]/g, function ($0) {
+			return escape($0).replace(/(%u)(\w{4})/gi, "\\$2").toLowerCase();
+			return escape($0).replace(/(%u)(\w{4})/gi, "&#x$2;");
+		});
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = Ascii2CssUnicode(text);
+	}
+	else {
+		doc.Text = Ascii2CssUnicode(doc.Text);
+	}
+}());
+

@@ -1,0 +1,20 @@
+/*
+ Ascii转UTF-8
+*/
+
+(function() {
+	function Ascii2utf8(str){
+		return encodeURIComponent(str);
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = Ascii2utf8(text);
+	}
+	else {
+		doc.Text = Ascii2utf8(doc.Text);
+	}
+}());

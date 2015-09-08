@@ -1,0 +1,24 @@
+/*
+ Ascii转Html Unicode
+*/
+
+(function() {
+	function Ascii2HtmlUnicode(str) {
+		var tmpStr="";
+		for (var i = 0; i < str.length; i++) {
+			tmpStr += '&#' + str.charCodeAt(i) + ';';
+		}
+		return tmpStr;
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = Ascii2HtmlUnicode(text);
+	}
+	else {
+		doc.Text = Ascii2HtmlUnicode(doc.Text);
+	}
+}());

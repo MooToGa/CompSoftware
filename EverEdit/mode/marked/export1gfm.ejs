@@ -1,0 +1,23 @@
+var export_to=App.ShowFileDialog(false, "", "");
+if( export_to.length ) {
+    // var Markdown = 
+    Include(App.AppPath+"\\mode\\marked\\marked.js");
+    //var prettify_css = 
+    //var github2_css = 
+    //var prettify_js = 
+    Include(App.AppPath+"\\mode\\marked\\min_source.js");
+
+    var marked = Markdown.marked;
+
+    Include(App.AppPath+"\\mode\\marked\\const.js");
+
+
+    file.WriteText(header);
+    file.WriteText(html_content);
+    file.WriteText(footer);
+    file.SaveToFile(export_to,2);
+    file.Close();
+
+    var msg="Saved to [" + export_to + "]";
+    App.ShowMsgBox( msg, "Markdown2Html", 64);
+}

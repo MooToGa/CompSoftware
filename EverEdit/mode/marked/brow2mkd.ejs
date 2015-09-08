@@ -1,0 +1,28 @@
+// var Markdown = 
+Include(App.AppPath+"\\mode\\marked\\marked.js");
+//var prettify_css = 
+//var github2_css = 
+//var prettify_js = 
+Include(App.AppPath+"\\mode\\marked\\min_source.js");
+
+var marked = Markdown.marked;
+marked.setOptions({
+    gfm: false,
+    langPrefix: "language-"
+});
+
+Include(App.AppPath+"\\mode\\marked\\const.js");
+
+
+if ( file_name !== "Markdown Preview") {
+    file_current_path = fso.GetAbsolutePathName( doc.PathName.replace(/\\[^\\]*\.md$/,"") );
+     preview = file_current_path + "\\preview.html";
+}
+
+file.WriteText(header);
+file.WriteText(html_content);
+file.WriteText(footer);
+file.SaveToFile(preview,2);
+file.Close();
+
+App.WebPreview(preview);

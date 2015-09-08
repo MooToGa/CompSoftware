@@ -1,0 +1,21 @@
+/*
+ CSS Unicode转Ascii
+*/
+
+(function() {
+	function CssUnicode2Ascii(str) {
+		return unescape(str.replace(/\\/g, '%u'));
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = CssUnicode2Ascii(text);
+	}
+	else {
+		doc.Text = CssUnicode2Ascii(doc.Text);
+	}
+}());
+

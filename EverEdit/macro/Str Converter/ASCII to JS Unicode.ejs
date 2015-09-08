@@ -1,0 +1,22 @@
+/*
+ Ascii转JS Unicode
+*/
+
+(function() {
+	function Ascii2JsUnicode(str) {
+		return str.replace(/[^\u0000-\u00FF]/g, function ($0) {
+			return escape($0).replace(/(%u)(\w{4})/gi, "\\u$2").toLowerCase();
+		});
+	};
+
+	//format the source in everedit
+	var doc=App.ActiveDoc;
+	var text=doc.SelText;
+
+	if( text.length ) {
+		doc.SelText = Ascii2JsUnicode(text);
+	}
+	else {
+		doc.Text = Ascii2JsUnicode(doc.Text);
+	}
+}());
